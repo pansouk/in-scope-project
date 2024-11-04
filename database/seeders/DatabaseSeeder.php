@@ -3,9 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
+use App\Models\Projects\Complex;
+use App\Models\Projects\Project;
+use App\Models\Projects\Standard;
 use App\Models\Role;
 use App\Models\User;
-
+use Database\Factories\StandardFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -31,5 +34,9 @@ class DatabaseSeeder extends Seeder
             $users = User::where('role_id', $user_role->id)->get();
             $company->users()->attach($users->random()->id);
         });
+
+        // Seed Standard & complex type projects
+        Standard::factory(100)->create();
+        Complex::factory(100)->create();
     }
 }
