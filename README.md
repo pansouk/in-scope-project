@@ -12,8 +12,8 @@
 
 ## Factories
 ```
-App\Models\Company::factory(100)->create()
 App\Models\Role::factory()->admin()->create()
 App\Models\Role::factory()->user()->create()
+App\Models\Company::factory(100)->create()
 App\Models\User::factory(100)->create()
 ```
