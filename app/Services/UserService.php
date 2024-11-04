@@ -33,4 +33,9 @@ class UserService
         $data['role_id'] = $default_role->id;
         return $this->userRepository->create($data);
     }
+
+    public function show(string $uuid): User
+    {
+        return $this->userRepository->show($uuid);
+    }
 }

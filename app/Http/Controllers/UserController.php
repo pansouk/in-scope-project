@@ -37,4 +37,10 @@ class UserController extends Controller
 
         return ApiResponse::success($user->toArray());
     }
+
+    public function show(string $uuid)
+    {
+        $user = $this->userService->show($uuid);
+        return ApiResponse::success($user->toArray());
+    }
 }

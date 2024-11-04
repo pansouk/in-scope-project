@@ -42,4 +42,9 @@ class UserRepository
     {
         return $this->userModel->create($userData);
     }
+
+    public function show(string $uuid): User
+    {
+        return $this->userModel->where('id', $uuid)->with('role')->firstOrFail();
+    }
 }
