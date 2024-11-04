@@ -2,7 +2,9 @@
 
 namespace App\Models\Projects;
 
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property double $budget
@@ -22,5 +24,13 @@ class Complex extends Project
         static::creating(function (Project $project) {
             $project->type = Type::COMPLEX;
         });
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function companies(): HasMany
+    {
+        return $this->hasMany(Company::class);
     }
 }
