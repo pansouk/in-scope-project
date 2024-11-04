@@ -68,4 +68,12 @@ class User extends Authenticatable
             'user_id',
             'company_id');
     }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role->name === 'admin';
+    }
 }
