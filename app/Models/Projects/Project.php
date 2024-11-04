@@ -9,4 +9,5 @@ abstract class Project extends Model
 {
     use HasUuids;
     protected $table = 'projects';
+    protected $keyType = 'string';
 }
