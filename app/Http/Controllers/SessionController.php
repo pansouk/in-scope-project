@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Http\Controllers;
+namespace App\Http\Controllers;
 
 
 use App\Helpers\ApiResponse;
@@ -17,6 +17,7 @@ class SessionController extends Controller
     {
         $this->service = $service;
     }
+
 
     public function login(Request $request)
     {

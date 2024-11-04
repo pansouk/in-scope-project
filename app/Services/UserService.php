@@ -2,36 +2,35 @@
 
 namespace App\Services;
 
+use App\Models\User;
+use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
-use Illuminate\Support\Facades\Auth;
 
 class UserService
 {
-    protected UserRepository $repo;
+    protected UserRepository $userRepository;
+    protected RoleRepository $roleRepository;
 
-    public function __construct(UserRepository $repo)
+    public function __construct(UserRepository $userRepository, RoleRepository $roleRepository)
     {
-        $this->repo = $repo;
+        $this->userRepository = $userRepository;
+        $this->roleRepository = $roleRepository;
     }
 
     /**
-     * @param array $data
+     * @param string $email
+     * @param string $password
      * @return array|string[]
      */
     public function login(string $email, string $password): array
     {
+        return $this->userRepository->login($email, $password);
+    }
 
-
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            $user = Auth::user();
-            $token =  $user->createToken('app');
-
-            return [
-                'token' => $token->plainTextToken,
-            ];
-        }
-        return [
-            'error' => 'Unauthorized'
-        ];
+    public function create(array $data): User
+    {
+        $default_role = $this->roleRepository->theDefault();
+        $data['role_id'] = $default_role->id;
+        return $this->userRepository->create($data);
     }
 }
