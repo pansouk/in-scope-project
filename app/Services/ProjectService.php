@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\ProjectRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProjectService
 {
@@ -12,4 +13,14 @@ class ProjectService
     {
         $this->projectRepository = $projectRepository;
     }
+
+    /**
+     * @param string $type
+     * @return Collection
+     */
+    public function index(string $type = 'all'): Collection
+    {
+        return $this->projectRepository->index($type);
+    }
+
 }

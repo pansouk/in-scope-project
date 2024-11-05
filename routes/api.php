@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsAdmin;
@@ -19,13 +20,19 @@ Route::middleware('auth:sanctum')->group(function () {
     })->middleware(IsAdmin::class);
 
     Route::group(['prefix' => 'companies'], function(){
-        Route::get('/{type?}', [CompanyController::class, 'index']);
+        Route::get('/', [CompanyController::class, 'index']);
         Route::post('/create', [CompanyController::class, 'create']);
         Route::get('/{uuid}/show', [CompanyController::class, 'show']);
         Route::put('/{uuid}/update', [CompanyController::class, 'update']);
         Route::delete('/{uuid}/destroy', [CompanyController::class, 'destroy']);
     })->middleware(IsAdmin::class);
 
-
+    Route::group(['prefix' => 'projects'], function(){
+        Route::get('/{type?}', [ProjectController::class, 'index']);
+        Route::post('/create', [ProjectController::class, 'create']);
+        Route::get('/{uuid}/show', [ProjectController::class, 'show']);
+        Route::put('/{uuid}/update', [ProjectController::class, 'update']);
+        Route::delete('/{uuid}/destroy', [ProjectController::class, 'destroy']);
+    })->middleware(IsAdmin::class);
 });
 

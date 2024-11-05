@@ -5,6 +5,7 @@ namespace App\Models\Projects;
 
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -30,10 +31,10 @@ class Complex extends Project
     }
 
     /**
-     * @return HasMany
+     * @return BelongsTo
      */
-    public function companies(): HasMany
+    public function company(): BelongsTo
     {
-        return $this->hasMany(Company::class);
+        return $this->belongsTo(Company::class);
     }
 }
