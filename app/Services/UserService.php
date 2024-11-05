@@ -27,6 +27,11 @@ class UserService
         return $this->userRepository->login($email, $password);
     }
 
+    /**
+     * Create a user
+     * @param array $data
+     * @return User
+     */
     public function create(array $data): User
     {
         $default_role = $this->roleRepository->theDefault();
@@ -34,8 +39,33 @@ class UserService
         return $this->userRepository->create($data);
     }
 
+    /**
+     * Display a user
+     * @param string $uuid
+     * @return User
+     */
     public function show(string $uuid): User
     {
         return $this->userRepository->show($uuid);
+    }
+
+    /**
+     * Update a user
+     * @param array $data
+     * @return bool
+     */
+    public function update(array $data): bool
+    {
+        return $this->userRepository->update($data);
+    }
+
+    /**
+     * Delete a user
+     * @param string $uuid
+     * @return bool|null
+     */
+    public function delete(string $uuid): bool|null
+    {
+        return $this->userRepository->delete($uuid);
     }
 }

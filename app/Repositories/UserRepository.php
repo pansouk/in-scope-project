@@ -43,8 +43,33 @@ class UserRepository
         return $this->userModel->create($userData);
     }
 
+    /**
+     * Show a user
+     * @param string $uuid
+     * @return User
+     */
     public function show(string $uuid): User
     {
         return $this->userModel->where('id', $uuid)->with('role')->firstOrFail();
+    }
+
+    /**
+     * Update a user
+     * @param array $data
+     * @return bool
+     */
+    public function update(array $data): bool
+    {
+        return $this->userModel->where('id', $data['id'])->update($data);
+    }
+
+    /**
+     * Delete a user
+     * @param string $uuid
+     * @return bool|null
+     */
+    public function delete(string $uuid): bool|null
+    {
+        return $this->userModel->where('id', $uuid)->delete();
     }
 }

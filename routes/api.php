@@ -12,7 +12,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'users'], function () {
         Route::post('/create', [UserController::class, 'create'])->middleware(IsAdmin::class);
         Route::get('/{uuid}/show', [UserController::class, 'show'])->middleware(IsAdmin::class);
-        Route::post('/{uuid}/show', [UserController::class, 'update'])->middleware(IsAdmin::class);
+        Route::put('/{uuid}/update', [UserController::class, 'update'])->middleware(IsAdmin::class);
+        Route::delete('/{uuid}/destroy', [UserController::class, 'destroy'])->middleware(IsAdmin::class);
     });
 });
 

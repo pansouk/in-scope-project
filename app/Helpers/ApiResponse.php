@@ -22,7 +22,7 @@ class ApiResponse
             'success' => true,
             'message' => $message,
             'data' => $data
-        ],200);
+        ], 200);
     }
 
     /**
