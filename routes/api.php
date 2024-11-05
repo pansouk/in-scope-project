@@ -24,6 +24,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{uuid}/show', [CompanyController::class, 'show']);
         Route::put('/{uuid}/update', [CompanyController::class, 'update']);
         Route::delete('/{uuid}/destroy', [CompanyController::class, 'destroy']);
-    });
+    })->middleware(IsAdmin::class);
+
+
 });
 
