@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class UserService
 {
@@ -25,6 +26,16 @@ class UserService
     public function login(string $email, string $password): array
     {
         return $this->userRepository->login($email, $password);
+    }
+
+    /**
+     * All users
+     * @param string $role
+     * @return Collection|User|array
+     */
+    public function index(string $role = 'all'): Collection|User|array
+    {
+        return $this->userRepository->index($role);
     }
 
     /**

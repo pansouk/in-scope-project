@@ -17,6 +17,12 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
+    public function index(string $role = 'all')
+    {
+        $users = $this->userService->index($role)->toArray();
+        return ApiResponse::success($users);
+    }
+
     /**
      * @param Request $request
      * @return JsonResponse
@@ -89,8 +95,8 @@ class UserController extends Controller
     public function destroy(string $uuid): JsonResponse
     {
         $deleted = $this->userService->delete($uuid);
-        if(is_null($deleted)) {
-            return ApiResponse::error([], 'User with uuid ' . $uuid . 'can not be deleted!');
+        if (!$deleted) {
+            return ApiResponse::error([], 'User with uuid ' . $uuid . 'can not be deleted or not exists!');
         }
         return ApiResponse::success([], 'User with uuid ' . $uuid . ' has been deleted!');
     }

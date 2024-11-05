@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class UserRepository
@@ -23,7 +24,7 @@ class UserRepository
     {
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             $user = Auth::user();
-            $token =  $user->createToken('app');
+            $token = $user->createToken('app');
 
             return [
                 'token' => $token->plainTextToken,
@@ -32,6 +33,24 @@ class UserRepository
         return [
             'error' => 'Unauthorized'
         ];
+    }
+
+    /**
+     * All Users
+     * @param string $role
+     * @return Collection|array|User
+     */
+    public function index(string $role = 'all'): Collection|array|User
+    {
+        return match ($role) {
+            'admin' => $this->userModel->whereHas('role', function ($q) {
+                $q->where('name', 'admin');
+            })->with('role')->get(),
+            'user' => $this->userModel->whereHas('role', function ($q) {
+                $q->where('name', 'user');
+            })->with('role')->get(),
+            default => $this->userModel->with('role')->get(),
+        };
     }
 
     /**

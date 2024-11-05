@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Projects\Project;
+use App\Models\Projects\Complex;
+use App\Models\Projects\Standard;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,8 +32,13 @@ class Company extends Model
     /**
      * @return BelongsTo
      */
-    public function projects(): BelongsTo
+    public function complexProjects(): BelongsTo
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(Complex::class, 'id', 'company_id');
+    }
+
+    public function standardProjects(): BelongsTo
+    {
+        return $this->belongsTo(Standard::class, 'id', 'company_id');
     }
 }
