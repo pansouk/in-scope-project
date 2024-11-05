@@ -57,10 +57,16 @@ class UserController extends Controller
     public function show(string $uuid): JsonResponse
     {
         $user = $this->userService->show($uuid);
-        return ApiResponse::success($user->toArray());
+        return ApiResponse::success($user->toArray(), 'Information for User with UUID: ' . $uuid);
     }
 
-    public function update(string $uuid, Request $request)
+    /**
+     * Update user
+     * @param string $uuid
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function update(string $uuid, Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -89,6 +95,7 @@ class UserController extends Controller
 
 
     /**
+     * Delete user
      * @param string $uuid
      * @return JsonResponse
      */

@@ -18,6 +18,7 @@ class CompanyController extends Controller
     }
 
     /**
+     * List all admin companies
      * @return JsonResponse
      */
     public function index(): JsonResponse
@@ -26,10 +27,15 @@ class CompanyController extends Controller
         if (count($companies) == 0) {
             return ApiResponse::error([], 'No companies found');
         }
-        return ApiResponse::success($companies->toArray());
+        return ApiResponse::success($companies->toArray(), 'Companies retrieved successfully');
     }
 
-    public function create(Request $request)
+    /**
+     * Create a company
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function create(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:120',
@@ -50,20 +56,22 @@ class CompanyController extends Controller
         ];
 
         $company = $this->companyService->create($args);
-        return ApiResponse::success($company->toArray());
+        return ApiResponse::success($company->toArray(), 'Company created successfully');
     }
 
     /**
+     * Company show
      * @param string $uuid
      * @return JsonResponse
      */
     public function show(string $uuid): JsonResponse
     {
         $company = $this->companyService->show($uuid);
-        return ApiResponse::success($company->toArray());
+        return ApiResponse::success($company->toArray(), 'Company retrieved successfully');
     }
 
     /**
+     * Update a company
      * @param Request $request
      * @param string $uuid
      * @return JsonResponse
@@ -98,6 +106,7 @@ class CompanyController extends Controller
     }
 
     /**
+     * Delete a company
      * @param string $uuid
      * @return JsonResponse
      */

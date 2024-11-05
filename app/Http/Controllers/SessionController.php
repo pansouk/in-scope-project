@@ -42,6 +42,6 @@ class SessionController extends Controller
         if (array_key_exists('error', $attempt)) {
             return ApiResponse::error($attempt);
         }
-        return ApiResponse::success($attempt);
+        return ApiResponse::success($attempt, 'Successfully logged in');
     }
 }
