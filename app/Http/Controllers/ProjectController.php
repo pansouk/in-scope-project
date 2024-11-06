@@ -68,10 +68,10 @@ class ProjectController extends Controller
     {
         $validator = Validator::make(
             [
-                'uuid' => $uuid,
+                'id' => $uuid,
                 'type' => $type,
             ], [
-            $uuid => 'required|exists:projects,uuid',
+            'id' => 'required|exists:projects,id',
             'type' => 'required|exists:projects,type',
         ]);
 

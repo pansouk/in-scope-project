@@ -16,7 +16,7 @@ class Complex extends Project
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'budget', 'timeline'];
+    protected $fillable = ['name', 'description', 'company_id', 'budget', 'timeline'];
 
     protected static function boot(): void
     {
@@ -28,6 +28,7 @@ class Complex extends Project
         static::creating(function (Project $project) {
             $project->type = Type::COMPLEX;
         });
+
     }
 
     /**

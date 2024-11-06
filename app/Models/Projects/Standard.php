@@ -12,7 +12,7 @@ class Standard extends Project
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'company_id'];
 
     /**
      * @return void

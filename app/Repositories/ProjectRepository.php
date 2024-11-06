@@ -72,8 +72,8 @@ class ProjectRepository
     public function update(array $data): bool
     {
         return match($data["type"]){
-            'standard' => $this->standardModel->update($data),
-            'complex' => $this->complexModel->update($data),
+            'standard' => $this->standardModel->where('id', $data['id'])->update($data),
+            'complex' => $this->complexModel->where('id', $data['id'])->update($data),
             default => false,
         };
     }
