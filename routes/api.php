@@ -30,9 +30,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => 'projects'], function(){
         Route::get('/{type?}', [ProjectController::class, 'index']);
         Route::post('/create', [ProjectController::class, 'create']);
-        Route::get('/{uuid}/show', [ProjectController::class, 'show']);
         Route::put('/{uuid}/update', [ProjectController::class, 'update']);
-        Route::delete('/{uuid}/destroy', [ProjectController::class, 'destroy']);
+        Route::get('/{uuid}/{type}/show', [ProjectController::class, 'show']);
+        Route::delete('/{uuid}/{type}/destroy', [ProjectController::class, 'destroy']);
     })->middleware(IsAdmin::class);
 });
 
