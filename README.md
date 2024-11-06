@@ -10,10 +10,8 @@
 * Make migrations
 * Seed Db (from factories or db seeder)
 
-## Factories
-```
-App\Models\Role::factory()->admin()->create()
-App\Models\Role::factory()->user()->create()
-App\Models\Company::factory(100)->create()
-App\Models\User::factory(100)->create()
-```
+## Admin
+Admin Functionality through database table (roles) and middleware.
+
+## Multi Type Projects
+Through class inheritance (1 table for projects 2 Models for types.)
