@@ -34,13 +34,13 @@ class SessionController extends Controller
             ]);
 
         if ($validator->fails()) {
-            return ApiResponse::validations($validator->errors());
+            return ApiResponse::validations($validator->errors(), 422);
         }
 
         $attempt = $this->service->login(request('email'), request('password'));
 
         if (array_key_exists('error', $attempt)) {
-            return ApiResponse::error($attempt);
+            return ApiResponse::error($attempt, 'Invalid credentials', 401);
         }
         return ApiResponse::success($attempt, 'Successfully logged in');
     }

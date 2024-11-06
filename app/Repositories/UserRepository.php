@@ -28,6 +28,7 @@ class UserRepository
 
             return [
                 'token' => $token->plainTextToken,
+                'token_type' => 'Bearer'
             ];
         }
         return [

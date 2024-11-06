@@ -34,6 +34,24 @@ class UserFactory extends Factory
         ];
     }
 
+    public function admin()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role_id' => Role::where('name', 'admin')->first()->id,
+            ];
+        });
+    }
+
+    public function user()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role_id' => Role::where('name', 'user')->first()->id,
+            ];
+        });
+    }
+
     /**
      * Indicate that the model's email address should be unverified.
      */

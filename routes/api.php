@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{uuid}/destroy', [UserController::class, 'destroy']);
     })->middleware(IsAdmin::class);
 
-    Route::group(['prefix' => 'companies'], function(){
+    Route::group(['prefix' => 'companies'], function () {
         Route::get('/', [CompanyController::class, 'index']);
         Route::post('/create', [CompanyController::class, 'create']);
         Route::get('/{uuid}/show', [CompanyController::class, 'show']);
@@ -27,7 +27,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{uuid}/destroy', [CompanyController::class, 'destroy']);
     })->middleware(IsAdmin::class);
 
-    Route::group(['prefix' => 'projects'], function(){
+    Route::group(['prefix' => 'projects'], function () {
         Route::get('/{type?}', [ProjectController::class, 'index']);
         Route::post('/create', [ProjectController::class, 'create']);
         Route::put('/{uuid}/update', [ProjectController::class, 'update']);

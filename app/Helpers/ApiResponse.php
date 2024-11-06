@@ -47,7 +47,7 @@ class ApiResponse
      * @param int $statusCode
      * @return JsonResponse
      */
-    public static function validations($errors, int $statusCode = 403): JsonResponse
+    public static function validations($errors, int $statusCode = 422): JsonResponse
     {
         return response()->json([
             'success' => false,
